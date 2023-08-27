@@ -1,0 +1,17 @@
+criminal:
+  - criminal_id: 1
+    criminal_first_name: John
+    criminal_last_name: Doe
+    criminal_nickname: SnakeTest
+    criminal_height: 180.5
+    criminal_hair_color: Black
+    criminal_eye_color: Blue
+    criminal_distinguishing_features: Tattoo on left arm
+    criminal_nationality: American
+    criminal_birth_date: null
+    criminal_last_known_address: 123 Main St, City
+    criminal_languages: English, Spanish
+    criminal_criminal_profession: Burglar
+    criminal_last_crime_details: Robbery at ABC Bank
+    criminal_is_archived: false
+    criminal_is_dead: false

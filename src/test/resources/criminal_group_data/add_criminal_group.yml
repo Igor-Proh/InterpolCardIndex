@@ -1,0 +1,7 @@
+criminal_group:
+  - criminal_group_id: 1
+    criminal_group_group_name: Group A
+    criminal_group_leader_name: Leader X
+    criminal_group_activities: Illegal activities
+    criminal_group_is_mafia: true
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interpol's card catalog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5 text-center">
+    <div th:if="${param.success}" class="alert alert-success">
+        You are registered success !
+    </div>
+    <div th:if="${param.logoutSuccess}" class="alert alert-success">
+        You are Logged Out !
+    </div>
+    <h1>Interpol's card catalog</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-12 mb-4">
+            <a href="/criminal/listOfCriminals" class="btn btn-primary btn-lg btn-block">List of Criminals</a>
+        </div>
+        <div class="col-md-12 mb-4">
+            <a href="/criminalGroup/listOfAllCriminalGroups" class="btn btn-secondary btn-lg btn-block">List of Criminal groups</a>
+        </div>
+        <div sec:authorize="hasAuthority('ADMIN')" class="col-md-12 mb-4">
+            <a href="/user/listOfUsers" class="btn btn-secondary btn-lg btn-block">List of Users</a>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <button sec:authorize ="!isAuthenticated()" class="btn btn-primary btn-lg" onclick="window.location.href='/login'">Log in</button>
+        <button sec:authorize ="!isAuthenticated()" class="btn btn-primary btn-lg" onclick="window.location.href='/register'">Sign up</button>
+        <button sec:authorize="isAuthenticated()" class="btn btn-primary btn-lg" onclick="window.location.href='/logout'">Logout</button>
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

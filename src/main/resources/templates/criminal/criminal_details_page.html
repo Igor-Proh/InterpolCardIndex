@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mb-4">Criminal Details</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>ID:</strong> <span th:text="${criminal.id}"></span></p>
+            <p><strong>First Name:</strong> <span th:text="${criminal.firstName}"></span></p>
+            <p><strong>Last Name:</strong> <span th:text="${criminal.lastName}"></span></p>
+            <p><strong>Nickname:</strong> <span th:text="${criminal.nickname}"></span></p>
+            <p><strong>Height:</strong> <span th:text="${criminal.height}"></span></p>
+            <p><strong>Hair color:</strong> <span th:text="${criminal.hairColor}"></span></p>
+            <p><strong>Eye color:</strong> <span th:text="${criminal.eyeColor}"></span></p>
+            <p><strong>Distinguishing features:</strong> <span th:text="${criminal.distinguishingFeatures}"></span></p>
+            <p><strong>Nationality:</strong> <span th:text="${criminal.nationality}"></span></p>
+            <p><strong>Birth Date:</strong> <span th:text="${criminal.birthDate}"></span></p>
+            <p><strong>Last Known Address:</strong> <span th:text="${criminal.lastKnownAddress}"></span></p>
+            <p><strong>Languages:</strong> <span th:text="${criminal.languages}"></span></p>
+            <p><strong>Criminal Profession:</strong> <span th:text="${criminal.criminalProfession}"></span></p>
+            <p><strong>Last Crime Details:</strong> <span th:text="${criminal.lastCrimeDetails}"></span></p>
+            <p><strong>Is Archived:</strong> <span th:text="${criminal.isArchived()}"></span></p>
+            <p><strong>Is Dead:</strong> <span th:text="${criminal.isArchived()}"></span></p>
+
+            <th:block th:if="${criminal.criminalGroup != null}">
+                <p><strong>Criminal group id:</strong> <span th:text="${criminal.criminalGroup.id}"></span></p>
+                <p><strong>Criminal group:</strong> <span th:text="${criminal.criminalGroup.groupName}"></span></p>
+                <p><strong>Criminal group leader name:</strong> <span th:text="${criminal.criminalGroup.leaderName}"></span></p>
+                <p><strong>Criminal group activities:</strong> <span th:text="${criminal.criminalGroup.activities}"></span></p>
+            </th:block>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-primary" onclick="goBack()">Back</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

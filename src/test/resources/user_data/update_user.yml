@@ -1,0 +1,11 @@
+user_entity:
+  - id: 1
+    email: user@example.com
+    password: $2a$12$kL/La5twIZtZcV1yurgpR.vqANn9HAVYuYWu36mTqKofn72PQi4XW
+    enabled: true
+    username: user
+  - id: 2
+    email: admin@example.com
+    password: $2a$12$A.xG.K6.6Ee6eoNS6MS.Buwf9R7uvQZNqSEXQE8yddReIpXuhjEmK
+    enabled: true
+    username: admin2

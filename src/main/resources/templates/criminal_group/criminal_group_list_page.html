@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal groups</title>
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mb-4">Criminal groups</h2>
+    <div>
+        <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-sm btn-primary"
+                th:onclick="|window.location.href='/criminalGroup/criminalGroupAdd'|">Add new criminal group
+        </button>
+    </div>
+    <br>
+    <!-- Search Field -->
+    <div class="form-group">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Group Name</th>
+                <th>Leader name</th>
+                <th>Activities</th>
+                <th>Is Mafia</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            <!-- Populate table rows using Thymeleaf -->
+            <tr th:each="criminalGroup : ${criminalGroupList}">
+                <td th:text="${criminalGroup.id}"></td>
+                <td th:text="${criminalGroup.groupName}"></td>
+                <td th:text="${criminalGroup.leaderName}"></td>
+                <td th:text="${criminalGroup.activities}"></td>
+                <td th:if="${criminalGroup.isMafia()}">
+                    <input type="checkbox" checked="checked" disabled="disabled"/>
+                </td>
+                <td th:unless="${criminalGroup.isMafia()}">
+                    <input type="checkbox"  disabled="disabled"/>
+                </td>
+
+                <td>
+
+                    <button class="btn btn-info"
+                            th:onclick="|window.location.href='/criminalGroup/criminalGroupDetails/${criminalGroup.id}'|">
+                        <i class="fas fa-info-circle icon-style"></i>
+                    </button>
+                    <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary"
+                            th:onclick="|window.location.href='/criminalGroup/criminalGroupUpdate/${criminalGroup.id}'|">
+                        <i class="fas fa-edit icon-style"></i></button>
+
+                    <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
+                            th:onclick="|window.location.href='/criminalGroup/criminalGroupDelete/${criminalGroup.id}'|">
+                        <i class="fas fa-ban icon-style"></i>
+                    </button>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Login Button -->
+    <div class="mt-4">
+        <button class="btn btn-primary" onclick="window.location.href='/';">Back</button>
+    </div>
+</div>
+
+<!-- Link to Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#searchInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#tableBody tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+        $("th").click(function () {
+            var index = $(this).index();
+            var rows = $("#tableBody tr").toArray();
+
+            rows.sort(function (a, b) {
+                var aValue = $(a).find("td").eq(index).text().trim().toLowerCase();
+                var bValue = $(b).find("td").eq(index).text().trim().toLowerCase();
+                return aValue.localeCompare(bValue);
+            });
+
+            $("#tableBody").empty().append(rows);
+        });
+    });
+</script>
+</body>
+</html>

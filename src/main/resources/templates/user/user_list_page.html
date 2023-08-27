@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminals List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1700px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .icon-style {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mb-4">User Management</h2>
+    <div>
+        <button class="btn btn-sm btn-primary"
+                onclick="window.location.href='/user/userAdd'">Add new user
+        </button>
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td>
+                    <span th:each="role : ${user.roles}" th:text="${role.role}"></span>
+                </td>
+                <td th:text="${user.password}"></td>
+                <td>
+                    <button class="btn btn-primary"
+                            th:onclick="|window.location.href='/user/userUpdate/${user.id}'|">
+                        <i class="fas fa-edit icon-style"></i>
+                    </button>
+
+                    <button class="btn btn-danger"
+                            th:onclick="|window.location.href='/user/userDelete/${user.id}'|">
+                        <i class="fas fa-ban icon-style"></i>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-4">
+        <button class="btn btn-primary" onclick="window.location.href='/';">Back</button>
+    </div>
+</div>
+</body>
+</html>

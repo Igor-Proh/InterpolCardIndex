@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criminal Group Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mb-4">Criminal Group Details</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>ID:</strong> <span th:text="${criminalGroup.id}"></span></p>
+            <p><strong>Group Name:</strong> <span th:text="${criminalGroup.groupName}"></span></p>
+            <p><strong>Leader Name:</strong> <span th:text="${criminalGroup.leaderName}"></span></p>
+            <p><strong>Activities:</strong> <span th:text="${criminalGroup.activities}"></span></p>
+            <p><strong>Is Mafia:</strong> <span th:text="${criminalGroup.isMafia}"></span></p>
+
+            <th:block th:if="${criminalGroup.members != null and not #lists.isEmpty(criminalGroup.members)}">
+                <p><strong>Members:</strong></p>
+                <ul>
+                    <li th:each="member : ${criminalGroup.members}">
+                        <span th:text="${member.firstName} + ' ' + ${member.lastName}"></span>
+                    </li>
+                </ul>
+            </th:block>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h4>Members:</h4>
+
+
+        <div class="mt-4">
+            <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" th:onclick="|window.location.href='/criminalGroup/criminalGroupAddMembers/'+ ${criminalGroup.id}|">Add new member</button>
+
+        </div>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>NickName</th>
+                <th>Height</th>
+                <th>Distinguishing features</th>
+                <th>Nationality</th>
+                <th>Profession</th>
+                <th>Crime Details</th>
+                <th sec:authorize="hasAuthority('ADMIN')" >Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="member : ${criminalGroupMembers}">
+                <tr>
+                    <td th:text="${member.id}"></td>
+                    <td th:text="${member.firstName}"></td>
+                    <td th:text="${member.lastName}"></td>
+                    <td th:text="${member.nickname}"></td>
+                    <td th:text="${member.height}"></td>
+                    <td th:text="${member.distinguishingFeatures}"></td>
+                    <td th:text="${member.nationality}"></td>
+                    <td th:text="${member.criminalProfession}"></td>
+                    <td th:text="${member.lastCrimeDetails}"></td>
+                    <td>
+                    <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
+                            th:onclick="|window.location.href='/criminalGroup/deleteMemberFromGroup/${criminalGroup.id}/deleteMember/${member.id}'|">
+                        <i class="fas fa-ban icon-style"></i>
+                    </button>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-primary"  th:onclick="|window.location.href='/criminalGroup/listOfAllCriminalGroups'|">
+            Back</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</body>
+</html>
