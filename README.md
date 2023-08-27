@@ -8,7 +8,7 @@ Data about each registered criminal: surname, name, nickname, height, hair and e
 - Sampling by any criteria or even by a subset of criteria.
 - Transfer of those "tied" to the archive; deletion only after death.
 
-# To run the app 
+# To run the app,
 
 You will need to:
 1. create a database in MySQL using the initDb.sql script (located in the root of the project).
@@ -26,4 +26,55 @@ The application uses Spring Security and you need to use one of the following lo
 USER - read-only rights. Can view tables
 
 ADMIN - full rights. Can delete, add, modify data in tables presented in the project.
+
+# Project overview
+
+Home Page 
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/61d778ef-e1ef-4aa5-be3a-ab2fa8851387)
+On this page, we can log in or create a new user, which is mandatory because an unauthenticated user will not be allowed to enter the lists of criminals and criminal groups.
+
+What we see if log in like User:
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/204abab4-0c3f-4445-8890-50492a7e972b)
+
+What we see if log in like Admin:
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/295d4034-e7fb-4831-82a8-006f1502d4af)
+
+List of Criminals Page look like (for Admin):
+
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/a1c93e49-3b3e-4b27-85db-e4ea4e696bf8)
+
+For admins we can create new criminal, update criminals and delete if Criminal dead. 
+
+For users we can only see information about Criminals and have access for Archived criminals.
+
+Also in lists page we have search field that filter data including all fields.
+
+List of Criminal Groups look like (for Admin):
+
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/aa9f036a-5942-4071-b056-92f21383f424)
+
+For admins we can create new criminal group, update criminal group and delete. 
+
+For users we can only see information about Criminal group.
+
+Also in lists page we have search field that filter data including all fields.
+
+In page Criminal Group Details that look like(for Admin):
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/3b5dc350-380e-4a3d-bcc5-aac96b79e45a)
+
+For admins we can add new members to group or delete from current. 
+
+For users we can only see information about Criminal group.
+
+Page List of Users look like (for Admin):
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/565bd8c7-031e-40cb-9bba-5c46aba812b1)
+
+There we can add new user, update or delete currrent. This list open only for Admin.
+
+User cant see it.
+
+And when we logge out we see this page:
+![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/94eaeeed-583e-45b5-8449-2d24c640dc5f)
+
+
 
