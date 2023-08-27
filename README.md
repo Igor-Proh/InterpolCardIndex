@@ -8,6 +8,37 @@ Data about each registered criminal: surname, name, nickname, height, hair and e
 - Sampling by any criteria or even by a subset of criteria.
 - Transfer of those "tied" to the archive; deletion only after death.
 
+# Used technologies
+
+In this project I use next technologies:
+
+Spring Boot -  simplifies the process of building production-ready Spring-based applications.
+
+Spring MVC - Model-View-Controller
+
+Spring Data - interact with databases.
+
+Spring Security - authentication and access control framework for Spring applications.
+
+H2 Database -  in-memory database that I use for testing.
+
+Thymeleaf - Java templates for creating html pages
+
+Thymeleaf Extras Spring Security - Integrates Spring Security with Thymeleaf templates.
+
+Lombok - to simplifies java code by providing annotations
+
+MySQL - database to store data from application
+
+Log4j - logging framework for Java.
+
+ModelMapper - mapping Java objects between different classes, similar to DTOs
+
+Database Rider - testing database interactions
+
+JUnit - writing and running unit tests in Java.
+
+Spring Boot Starter Test - testing dependencies provided by Spring Boot for writing tests.
 # To run the app,
 
 You will need to:
