@@ -85,10 +85,6 @@ INSERT INTO role (id, role) VALUES (2, 'ADMIN');
 INSERT INTO user_entity (id, email, enabled, password, username) VALUES (1, 'user@example.com', 1, '$2a$12$kL/La5twIZtZcV1yurgpR.vqANn9HAVYuYWu36mTqKofn72PQi4XW', 'user');
 INSERT INTO user_entity (id, email, enabled, password, username) VALUES (2, 'admin@example.com', 1, '$2a$12$A.xG.K6.6Ee6eoNS6MS.Buwf9R7uvQZNqSEXQE8yddReIpXuhjEmK', 'admin');
 
-INSERT INTO user_entity_roles (user_id, role_id) VALUES (1, 1); -- User role for user
-INSERT INTO user_entity_roles (user_id, role_id) VALUES (2, 2); -- Admin role for admin
-
-
-
-
+INSERT INTO user_entity_roles (user_id, role_id) VALUES (1, 1);
+INSERT INTO user_entity_roles (user_id, role_id) VALUES (2, 2);
 
