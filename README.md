@@ -10,8 +10,6 @@ Data about each registered criminal: surname, name, nickname, height, hair and e
 
 # Used technologies
 
-In this project I use next technologies:
-
 Spring Boot -  simplifies the process of building production-ready Spring-based applications.
 
 Spring MVC - Model-View-Controller
@@ -39,7 +37,8 @@ Database Rider - testing database interactions
 JUnit - writing and running unit tests in Java.
 
 Spring Boot Starter Test - testing dependencies provided by Spring Boot for writing tests.
-# To run the app,
+
+# To run Application
 
 You will need to:
 1. create a database in MySQL using the initDb.sql script (located in the root of the project).
