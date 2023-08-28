@@ -27,6 +27,10 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
+
+        .hide-mafia {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -38,10 +42,17 @@
         </button>
     </div>
     <br>
-    <!-- Search Field -->
     <div class="form-group">
         <input type="text" id="searchInput" class="form-control" placeholder="Search...">
     </div>
+
+    <div class="form-check">
+        <label for="mafiaCheckbox" class="form-check-label">
+            <input type="checkbox" id="mafiaCheckbox" class="form-check-input">
+            Mafia Groups
+        </label>
+    </div>
+    <br>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -56,7 +67,6 @@
             </tr>
             </thead>
             <tbody id="tableBody">
-            <!-- Populate table rows using Thymeleaf -->
             <tr th:each="criminalGroup : ${criminalGroupList}">
                 <td th:text="${criminalGroup.id}"></td>
                 <td th:text="${criminalGroup.groupName}"></td>
@@ -90,13 +100,11 @@
         </table>
     </div>
 
-    <!-- Login Button -->
     <div class="mt-4">
         <button class="btn btn-primary" onclick="window.location.href='/';">Back</button>
     </div>
 </div>
 
-<!-- Link to Bootstrap JS and jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -105,23 +113,37 @@
     $(document).ready(function () {
         $("#searchInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#tableBody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            var showMafia = $("#mafiaCheckbox").prop("checked");
+
+            $("#tableBody tr").each(function () {
+                var isMafiaRow = $(this).find("td").eq(4).find("input[type='checkbox']").prop("checked");
+                var rowText = $(this).text().toLowerCase();
+
+                if ((!showMafia || isMafiaRow) && rowText.includes(value)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
             });
         });
 
-        $("th").click(function () {
-            var index = $(this).index();
-            var rows = $("#tableBody tr").toArray();
+        $("#mafiaCheckbox").on("change", function () {
+            var showMafia = $(this).prop("checked");
+            var searchValue = $("#searchInput").val().toLowerCase();
 
-            rows.sort(function (a, b) {
-                var aValue = $(a).find("td").eq(index).text().trim().toLowerCase();
-                var bValue = $(b).find("td").eq(index).text().trim().toLowerCase();
-                return aValue.localeCompare(bValue);
+            $("#tableBody tr").each(function () {
+                var isMafiaRow = $(this).find("td").eq(4).find("input[type='checkbox']").prop("checked");
+                var rowText = $(this).text().toLowerCase();
+
+                if ((!showMafia || isMafiaRow) && rowText.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
             });
-
-            $("#tableBody").empty().append(rows);
         });
+
+        $("#mafiaCheckbox").trigger("change");
     });
 </script>
 </body>

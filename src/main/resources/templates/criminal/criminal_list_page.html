@@ -54,6 +54,12 @@
         <input type="text" id="searchInput" class="form-control" placeholder="Search...">
     </div>
 
+    <div class="form-check">
+        <input type="checkbox" id="deadCheckbox" class="form-check-input">
+        <label for="deadCheckbox" class="form-check-label">Dead Criminals</label>
+    </div>
+    <br>
+
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -125,16 +131,41 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-    // Search functionality
     $(document).ready(function () {
         $("#searchInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#tableBody tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            var searchValue = $(this).val().toLowerCase();
+            var showDead = $("#deadCheckbox").prop("checked");
+
+            $("#tableBody tr").each(function () {
+                var isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
+                var rowText = $(this).text().toLowerCase();
+
+                if ((!showDead || isDeadRow) && rowText.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
             });
         });
-    });
 
+        $("#deadCheckbox").on("change", function () {
+            var showDead = $(this).prop("checked");
+            var searchValue = $("#searchInput").val().toLowerCase();
+
+            $("#tableBody tr").each(function () {
+                var isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
+                var rowText = $(this).text().toLowerCase();
+
+                if ((!showDead || isDeadRow) && rowText.includes(searchValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+        $("#deadCheckbox").trigger("change");
+    });
 </script>
 </body>
 </html>
