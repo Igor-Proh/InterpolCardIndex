@@ -6,6 +6,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
+/**
+ * The {@code ControllersAspect} class.<br/>
+ * Aspects configuration class
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Component
 @Aspect
 public class ControllersAspect {

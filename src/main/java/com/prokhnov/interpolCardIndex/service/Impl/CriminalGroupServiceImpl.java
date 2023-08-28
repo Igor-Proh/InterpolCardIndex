@@ -12,6 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * The {@code CriminalGroupServiceImpl} class implements CriminalGroupService.<br/>
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Service
 public class CriminalGroupServiceImpl implements CriminalGroupService {
 

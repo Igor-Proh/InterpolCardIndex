@@ -12,6 +12,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The {@code CriminalServiceImpl} class implements CriminalService.<br/>
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Service
 public class CriminalServiceImpl implements CriminalService {
 

@@ -4,6 +4,13 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * The {@code CriminalDto} class.<br/>
+ * Class that provide DTO for Criminal class.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Data
 @Builder
 @AllArgsConstructor

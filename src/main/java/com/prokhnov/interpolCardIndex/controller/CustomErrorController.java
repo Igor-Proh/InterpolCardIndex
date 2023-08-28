@@ -8,6 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * The {@code CustomErrorController} class.<br/>
+ * Class that provide methods with mapping for Errors.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Controller
 public class CustomErrorController implements ErrorController {
 

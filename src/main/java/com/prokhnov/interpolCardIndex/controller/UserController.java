@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * The {@code UserController} class.<br/>
+ * Class that provide methods with mapping for User.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {

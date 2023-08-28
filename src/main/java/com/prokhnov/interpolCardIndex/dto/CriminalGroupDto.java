@@ -7,6 +7,13 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
+/**
+ * The {@code CriminalGroupDto} class.<br/>
+ * Class that provide DTO for CriminalGroup class.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

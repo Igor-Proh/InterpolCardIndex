@@ -14,6 +14,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The {@code UserServiceImpl} class implements UserService.<br/>
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;

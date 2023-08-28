@@ -7,6 +7,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+/**
+ * The {@code InterpolCardIndexApplication} class.<br/>
+ * Start point of application
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @SpringBootApplication()
 @EnableWebMvc
 @EntityScan("com.prokhnov.interpolCardIndex.model")

@@ -6,6 +6,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * The {@code CriminalGroupMapper} class.<br/>
+ * Class that provide methods to create DTO from Entity and Entity from DTO for CriminalGroup.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Component
 public class CriminalGroupMapper {
 

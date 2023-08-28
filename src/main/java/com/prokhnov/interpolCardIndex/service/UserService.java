@@ -5,6 +5,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The {@code UserService} interface.<br/>
+ * Service layer of User.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Service
 public interface UserService {
     User findByUsername(String username);

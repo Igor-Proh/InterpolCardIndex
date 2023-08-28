@@ -5,7 +5,13 @@ import lombok.*;
 
 import java.util.Set;
 
-
+/**
+ * The {@code User} class.<br/>
+ * The User Entity class used to work with the database.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

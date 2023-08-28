@@ -7,7 +7,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
+/**
+ * The {@code SecurityConfiguration} class.<br/>
+ * Spring Security configuration class
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {

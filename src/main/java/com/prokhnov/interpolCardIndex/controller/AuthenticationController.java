@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * The {@code AuthenticationController} class.<br/>
+ * Class that provide methods with mapping for authentication.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Controller
 public class AuthenticationController {
 

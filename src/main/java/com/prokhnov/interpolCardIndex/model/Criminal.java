@@ -5,6 +5,13 @@ import lombok.*;
 
 import java.time.LocalDate;
 
+/**
+ * The {@code Criminal} class.<br/>
+ * The Criminal Entity class used to work with the database.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Data
 @Entity
 @Table(name = "criminal")

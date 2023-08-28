@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The {@code CriminalController} class.<br/>
+ * Class that provide methods with mapping for Criminal.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Controller
 @RequestMapping("/criminal")
 @SessionAttributes({"fromPage"})

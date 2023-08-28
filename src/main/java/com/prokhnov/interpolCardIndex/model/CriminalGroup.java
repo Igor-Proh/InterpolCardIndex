@@ -1,11 +1,17 @@
 package com.prokhnov.interpolCardIndex.model;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
 
+/**
+ * The {@code CriminalGroup} class.<br/>
+ * The CriminalGroup Entity class used to work with the database.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Data
 @Builder
 @AllArgsConstructor

@@ -1,5 +1,6 @@
 package com.prokhnov.interpolCardIndex.controller;
 
+
 import com.prokhnov.interpolCardIndex.dto.CriminalDto;
 import com.prokhnov.interpolCardIndex.dto.CriminalGroupDto;
 import com.prokhnov.interpolCardIndex.model.CriminalGroup;
@@ -12,7 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/**
+ * The {@code CriminalGroupController} class.<br/>
+ * Class that provide methods with mapping for CriminalGroup.
+ *
+ * @author Ihor Prokhnov
+ * @version 1.0 Aug 2023
+ */
 @Controller
 @RequestMapping("/criminalGroup")
 public class CriminalGroupController {
