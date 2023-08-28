@@ -61,7 +61,6 @@ public class UserController {
         try {
             userService.save(user);
         } catch (UserAlreadyExistAuthenticationException e) {
-//            User user2 = new User();
             model.addAttribute("userExist", e.getMessage());
             model.addAttribute("user", user);
             model.addAttribute("allRoles", roleRepository.findAll());
