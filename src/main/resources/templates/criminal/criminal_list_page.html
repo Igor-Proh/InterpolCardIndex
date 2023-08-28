@@ -29,8 +29,9 @@
         }
 
         .icon-style {
-            font-size: 18px; /* Set your desired size here */
+            font-size: 18px;
         }
+
     </style>
 </head>
 <body>
@@ -110,7 +111,7 @@
                         <i class="fas fa-edit icon-style"></i>
                     </button>
 
-                    <button class="btn btn-danger"
+                    <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
                             th:if="${criminal.dead}"
                             th:onclick="|window.location.href='/criminal/criminalDelete/${criminal.id}'|">
                         <i class="fas fa-ban icon-style"></i>

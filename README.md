@@ -73,9 +73,9 @@ List of Criminals Page look like (for Admin):
 
 ![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/a1c93e49-3b3e-4b27-85db-e4ea4e696bf8)
 
-For admins we can create new criminal, update criminals and delete if Criminal dead. 
+For admins, we can create new criminal, update criminals and delete if Criminal dead. 
 
-For users we can only see information about Criminals and have access for Archived criminals.
+For users, we can only see information about Criminals and have access for Archived criminals.
 
 Also in lists page we have search field that filter data including all fields.
 
@@ -83,27 +83,27 @@ List of Criminal Groups look like (for Admin):
 
 ![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/aa9f036a-5942-4071-b056-92f21383f424)
 
-For admins we can create new criminal group, update criminal group and delete. 
+For admins, we can create new criminal group, update criminal group and delete. 
 
-For users we can only see information about Criminal group.
+For users, we can only see information about Criminal group.
 
 Also in lists page we have search field that filter data including all fields.
 
 In page Criminal Group Details that look like(for Admin):
 ![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/3b5dc350-380e-4a3d-bcc5-aac96b79e45a)
 
-For admins we can add new members to group or delete from current. 
+For admins, we can add new members to group or delete from current. 
 
-For users we can only see information about Criminal group.
+For users, we can only see information about Criminal group.
 
 Page List of Users look like (for Admin):
 ![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/565bd8c7-031e-40cb-9bba-5c46aba812b1)
 
-There we can add new user, update or delete currrent. This list open only for Admin.
+There we can add new user, update or delete current. This list open only for Admin.
 
 User cant see it.
 
-And when we logge out we see this page:
+And when we logged out we see this page:
 ![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/94eaeeed-583e-45b5-8449-2d24c640dc5f)
 
 

@@ -48,7 +48,7 @@ public class AuthenticationController {
             model.addAttribute("user", user);
             return "register_page";
         }
-        return "redirect:/home";
+        return "redirect:/home?success";
     }
 
     @RequestMapping
