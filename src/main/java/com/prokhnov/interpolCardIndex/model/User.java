@@ -34,7 +34,7 @@ public class User {
     @Column(name = "enabled")
     private boolean enabled;
 
-    @Column(name="username")
+    @Column(name="username", unique = true)
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)

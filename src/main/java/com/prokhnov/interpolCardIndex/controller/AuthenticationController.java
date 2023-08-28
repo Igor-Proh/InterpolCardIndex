@@ -1,6 +1,7 @@
 package com.prokhnov.interpolCardIndex.controller;
 
-import com.prokhnov.interpolCardIndex.exceptions.UserAlreadyExistAuthenticationException;
+import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentEmailAlreadyExistException;
+import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentNameAlreadyExistException;
 import com.prokhnov.interpolCardIndex.model.User;
 import com.prokhnov.interpolCardIndex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,8 @@ public class AuthenticationController {
     public String registerSave(@ModelAttribute User user, Model model) {
         try {
             userService.save(user);
-        } catch (UserAlreadyExistAuthenticationException e) {
-            model.addAttribute("userExist", e.getMessage());
+        } catch (UserWithCurrentNameAlreadyExistException | UserWithCurrentEmailAlreadyExistException e) {
+            model.addAttribute("existMessage", e.getMessage());
             model.addAttribute("user", user);
             return "register_page";
         }

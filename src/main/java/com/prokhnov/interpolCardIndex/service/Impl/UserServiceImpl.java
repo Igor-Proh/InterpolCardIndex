@@ -1,19 +1,20 @@
 package com.prokhnov.interpolCardIndex.service.Impl;
 
-import com.prokhnov.interpolCardIndex.exceptions.UserAlreadyExistAuthenticationException;
+import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentEmailAlreadyExistException;
+import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentNameAlreadyExistException;
 import com.prokhnov.interpolCardIndex.model.Role;
 import com.prokhnov.interpolCardIndex.model.User;
 import com.prokhnov.interpolCardIndex.repository.RoleRepository;
 import com.prokhnov.interpolCardIndex.repository.UserRepository;
 import com.prokhnov.interpolCardIndex.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -41,13 +42,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(User user) throws UserAlreadyExistAuthenticationException {
+    public void save(User user) throws AuthenticationException {
 
         if (user.getUsername() != null
                 && userRepository.findByUsername(user.getUsername()) != null
                 && userRepository.findByUsername(user.getUsername()).getUsername() != null) {
 
-            throw new UserAlreadyExistAuthenticationException("User with username " + user.getUsername() + " already exists");
+            throw new UserWithCurrentNameAlreadyExistException("User with username " + user.getUsername() + " already exists");
+        }
+
+        if (user.getUsername() != null
+                && userRepository.findByEmail(user.getEmail()) != null
+                && userRepository.findByEmail(user.getEmail()).getEmail() != null) {
+
+            throw new UserWithCurrentEmailAlreadyExistException("User with email " + user.getEmail() + " already exists");
         }
 
         Role userRole = roleRepository.findByRole("USER");
@@ -81,6 +89,18 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with ID: " + id));
+    }
+
+    @Override
+    public void update(User user) {
+        boolean present = userRepository.findById(user.getId()).isPresent();
+
+        if (present){
+            user.setRoles(userRepository.findById(user.getId()).get().getRoles());
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
 
 

@@ -1,11 +1,12 @@
 package com.prokhnov.interpolCardIndex.controller;
 
-import com.prokhnov.interpolCardIndex.exceptions.UserAlreadyExistAuthenticationException;
+import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentEmailAlreadyExistException;
+import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentNameAlreadyExistException;
 import com.prokhnov.interpolCardIndex.model.User;
 import com.prokhnov.interpolCardIndex.repository.RoleRepository;
 import com.prokhnov.interpolCardIndex.service.UserService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -60,8 +61,8 @@ public class UserController {
     public String saveUser(@ModelAttribute User user, Model model) {
         try {
             userService.save(user);
-        } catch (UserAlreadyExistAuthenticationException e) {
-            model.addAttribute("userExist", e.getMessage());
+        } catch (UserWithCurrentNameAlreadyExistException | UserWithCurrentEmailAlreadyExistException e) {
+            model.addAttribute("existMessage", e.getMessage());
             model.addAttribute("user", user);
             model.addAttribute("allRoles", roleRepository.findAll());
             return "user/user_add_update_page";
@@ -74,25 +75,13 @@ public class UserController {
     public String updateUser(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        model.addAttribute("allRoles", roleRepository.findAll());
+        model.addAttribute("readOnly", true);
         return "user/user_add_update_page";
     }
 
     @PostMapping("/userUpdate/{id}")
-    public String updateUser(@PathVariable Long id, @ModelAttribute User user, Model model) {
-        User existingUser = userService.getUserById(id);
-
-        if (existingUser != null) {
-            BeanUtils.copyProperties(user, existingUser, "id");
-            try {
-                userService.save(existingUser);
-            } catch (UserAlreadyExistAuthenticationException e) {
-                model.addAttribute("userExist", e.getMessage());
-                model.addAttribute("user", existingUser);
-                return "user/user_add_update_page";
-            }
-        }
-
+    public String updateUser(@ModelAttribute User user) {
+        userService.update(user);
         return "redirect:/user/listOfUsers";
     }
 

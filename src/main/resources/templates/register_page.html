@@ -22,8 +22,8 @@
                 <div th:if="${param.errorName}" class="alert alert-danger">
                     There is already a user with this name!
                 </div>
-                <div th:if="${userExist}" class="alert alert-danger">
-                    <span th:text="${userExist}"></span>
+                <div th:if="${existMessage}" class="alert alert-danger">
+                    <span th:text="${existMessage}"></span>
                 </div>
                 <div class="card-body">
                     <form th:action="@{/register/save}" method="post" th:object="${user}">

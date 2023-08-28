@@ -8,17 +8,21 @@
 </head>
 <body>
 <div class="container mt-5 text-center">
+
     <div class="text-right mt-2" sec:authorize="isAuthenticated()">
         <button class="btn btn-primary" disabled>
             <span th:remove="tag" sec:authorize="isAuthenticated()" sec:authentication="name">thymeleaf</span>
         </button>
     </div>
+
     <div th:if="${param.success}" class="alert alert-success">
         You are registered success !
     </div>
+
     <div th:if="${param.logoutSuccess}" class="alert alert-success">
         You are Logged Out !
     </div>
+
     <h1>Interpol's card catalog</h1>
 
     <div class="row mt-4">

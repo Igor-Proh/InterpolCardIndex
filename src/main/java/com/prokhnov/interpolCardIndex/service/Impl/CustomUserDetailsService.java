@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             User appUser = userRepository.findByUsername(username);
 
             if (appUser == null) {
-                return null;
+                throw new UsernameNotFoundException("User not found");
             }
 
             return new org.springframework.security.core.userdetails.User(

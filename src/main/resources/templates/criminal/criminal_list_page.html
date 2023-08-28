@@ -52,7 +52,7 @@
     <br>
     <!-- Search Field -->
     <div class="form-group">
-        <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+        <label for="searchInput"></label><input type="text" id="searchInput" class="form-control" placeholder="Search...">
     </div>
 
     <div class="form-check">
@@ -113,13 +113,34 @@
 
                     <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
                             th:if="${criminal.dead}"
-                            th:onclick="|window.location.href='/criminal/criminalDelete/${criminal.id}'|">
+                            data-toggle="modal"
+                            data-target="#deleteConfirmationModal"
+                            th:data-delete-link="@{'/criminal/criminalDelete/' + ${criminal.id}}">
                         <i class="fas fa-ban icon-style"></i>
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this criminal?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a id="deleteUserLink" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="mt-4">
@@ -150,12 +171,12 @@
         });
 
         $("#deadCheckbox").on("change", function () {
-            var showDead = $(this).prop("checked");
-            var searchValue = $("#searchInput").val().toLowerCase();
+            let showDead = $(this).prop("checked");
+            let searchValue = $("#searchInput").val().toLowerCase();
 
             $("#tableBody tr").each(function () {
-                var isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
-                var rowText = $(this).text().toLowerCase();
+                let isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
+                let rowText = $(this).text().toLowerCase();
 
                 if ((!showDead || isDeadRow) && rowText.includes(searchValue)) {
                     $(this).show();
@@ -165,7 +186,15 @@
             });
         });
 
-        $("#deadCheckbox").trigger("change");
+        $('#deadCheckbox').trigger("change");
+
+        $('#deleteConfirmationModal').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget);
+            let deleteLink = button.data('delete-link');
+
+            let modal = $(this);
+            modal.find('#deleteUserLink').attr('href', deleteLink);
+        });
     });
 </script>
 </body>
