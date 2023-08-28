@@ -1,5 +1,6 @@
 package com.prokhnov.interpolCardIndex.controller;
 
+import com.prokhnov.interpolCardIndex.exceptions.UserAlreadyExistAuthenticationException;
 import com.prokhnov.interpolCardIndex.model.User;
 import com.prokhnov.interpolCardIndex.repository.RoleRepository;
 import com.prokhnov.interpolCardIndex.service.UserService;
@@ -56,8 +57,16 @@ public class UserController {
     }
 
     @PostMapping("/userSave")
-    public String saveUser(@ModelAttribute User user) {
-        userService.save(user);
+    public String saveUser(@ModelAttribute User user, Model model) {
+        try {
+            userService.save(user);
+        } catch (UserAlreadyExistAuthenticationException e) {
+//            User user2 = new User();
+            model.addAttribute("userExist", e.getMessage());
+            model.addAttribute("user", user);
+            model.addAttribute("allRoles", roleRepository.findAll());
+            return "user/user_add_update_page";
+        }
         return "redirect:/user/listOfUsers";
     }
 
@@ -71,12 +80,18 @@ public class UserController {
     }
 
     @PostMapping("/userUpdate/{id}")
-    public String updateUser(@PathVariable Long id, @ModelAttribute User user) {
+    public String updateUser(@PathVariable Long id, @ModelAttribute User user, Model model) {
         User existingUser = userService.getUserById(id);
 
         if (existingUser != null) {
             BeanUtils.copyProperties(user, existingUser, "id");
-            userService.save(existingUser);
+            try {
+                userService.save(existingUser);
+            } catch (UserAlreadyExistAuthenticationException e) {
+                model.addAttribute("userExist", e.getMessage());
+                model.addAttribute("user", existingUser);
+                return "user/user_add_update_page";
+            }
         }
 
         return "redirect:/user/listOfUsers";

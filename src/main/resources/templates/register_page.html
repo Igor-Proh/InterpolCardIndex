@@ -22,19 +22,22 @@
                 <div th:if="${param.errorName}" class="alert alert-danger">
                     There is already a user with this name!
                 </div>
+                <div th:if="${userExist}" class="alert alert-danger">
+                    <span th:text="${userExist}"></span>
+                </div>
                 <div class="card-body">
                     <form th:action="@{/register/save}" method="post" th:object="${user}">
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" th:field="*{username}" placeholder="Enter username">
+                            <input type="text" class="form-control" id="username" name="username" th:field="*{username}" placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Enter email">
+                            <input type="email" class="form-control" id="email" name="email" th:field="*{email}" placeholder="Enter email" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Enter password">
+                            <input type="password" class="form-control" id="password" name="password" th:field="*{password}" placeholder="Enter password" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>
                         <a href="/" class="btn btn-primary">Back</a>
