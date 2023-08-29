@@ -73,7 +73,8 @@
                         <i class="fas fa-edit icon-style"></i>
                     </button>
 
-                    <button class="btn btn-danger"
+                    <button th:unless="${userName.equals(user.getUsername())}"
+                            class="btn btn-danger"
                             data-toggle="modal"
                             data-target="#deleteConfirmationModal"
                             th:data-delete-link="@{'/user/userDelete/' + ${user.id}}">

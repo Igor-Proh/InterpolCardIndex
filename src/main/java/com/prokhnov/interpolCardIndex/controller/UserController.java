@@ -5,8 +5,8 @@ import com.prokhnov.interpolCardIndex.exceptions.UserWithCurrentNameAlreadyExist
 import com.prokhnov.interpolCardIndex.model.User;
 import com.prokhnov.interpolCardIndex.repository.RoleRepository;
 import com.prokhnov.interpolCardIndex.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,9 +34,10 @@ public class UserController {
     }
 
     @GetMapping("/listOfUsers")
-    public String userListPage(Model model) {
+    public String userListPage(Model model, HttpServletRequest request) {
         List<User> allUsers = userService.findAllUsers();
         model.addAttribute("userList", allUsers);
+        model.addAttribute("userName", request.getRemoteUser());
         return "user/user_list_page";
     }
 
