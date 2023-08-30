@@ -1,0 +1,71 @@
+<div th:fragment="searchForm">
+    <h5>Search By:</h5>
+    <div>
+        <form id="searchForm" action="/criminal/search" method="get">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>
+                        <input type="text" name="firstName" placeholder="First Name" >
+                    </label>
+                    <label>
+                        <input type="text" name="lastName" placeholder="Last Name">
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="text" name="nickname" placeholder="Nickname">
+                    </label>
+                    <label>
+                        <input type="text" name="nationality" placeholder="Nationality">
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="text" name="hairColor" placeholder="Hair Color">
+                    </label>
+                    <label>
+                        <input type="text" name="eyeColor" placeholder="Eye Color">
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="text" name="distinguishingFeatures" placeholder="Distinguishing Features">
+                    </label>
+                    <label>
+                        <input type="date" name="birthDate" placeholder="Birth Date">
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="text" name="lastKnownAddress" placeholder="Last Known Address">
+                    </label>
+                    <label>
+                        <input type="text" name="languages" placeholder="Languages">
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label>
+                        <input type="text" name="criminalProfession" placeholder="Criminal Profession">
+                    </label>
+                    <label>
+                        <input type="text" name="lastCrimeDetails" placeholder="Last Crime Details">
+                    </label>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2">
+
+                    <label>Is Dead:
+                        <input type="checkbox" name="isDead">
+                    </label>
+                </div>
+
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-8">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

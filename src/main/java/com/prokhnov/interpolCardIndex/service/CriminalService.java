@@ -1,7 +1,9 @@
 package com.prokhnov.interpolCardIndex.service;
 
 import com.prokhnov.interpolCardIndex.dto.CriminalDto;
+import com.prokhnov.interpolCardIndex.model.Criminal;
 
+import java.time.LocalDate;
 import java.util.List;
 /**
  * The {@code CriminalService} interface.<br/>
@@ -26,4 +28,11 @@ public interface CriminalService {
     List<CriminalDto> findCriminalByCriminalGroupId(Long id);
 
     List<CriminalDto> findCriminalByCriminalGroupIsNull();
+
+    List<CriminalDto> searchCriminals(String firstName, String lastName, String nickname, String nationality,
+                                   String hairColor, String eyeColor, String distinguishingFeatures,
+                                   LocalDate birthDate, String lastKnownAddress, String languages,
+                                   String criminalProfession, String lastCrimeDetails, Boolean isArchived,
+                                   Boolean isDead);
+
 }

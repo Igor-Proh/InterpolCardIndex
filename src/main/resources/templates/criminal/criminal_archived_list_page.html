@@ -27,10 +27,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
-
-        .icon-style {
-            font-size: 18px;
-        }
     </style>
 
 </head>
@@ -42,98 +38,13 @@
         <input type="text" id="searchInput" class="form-control" placeholder="Search...">
     </div>
 
-    <div class="form-check">
-        <input type="checkbox" id="deadCheckbox" class="form-check-input">
-        <label for="deadCheckbox" class="form-check-label">Dead Criminals</label>
-    </div>
+    <div class="container" th:include="criminal/search_form :: searchForm"></div>
     <br>
-
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Nickname</th>
-                <th>Height</th>
-                <th>Hair color</th>
-                <th>Eye color</th>
-                <th>Distinguishing features</th>
-                <th>Nationality</th>
-                <th>Birth Date</th>
-                <th>Address</th>
-                <th>Languages</th>
-                <th>Profession</th>
-                <th>Crime Details</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody id="tableBody">
-            <tr th:each="criminal : ${criminalList}">
-                <td th:text="${criminal.id}"></td>
-                <td th:text="${criminal.firstName}"></td>
-                <td th:text="${criminal.lastName}"></td>
-                <td th:text="${criminal.nickname}"></td>
-                <td th:text="${criminal.height}"></td>
-                <td th:text="${criminal.hairColor}"></td>
-                <td th:text="${criminal.eyeColor}"></td>
-                <td th:text="${criminal.distinguishingFeatures}"></td>
-                <td th:text="${criminal.nationality}"></td>
-                <td th:text="${criminal.birthDate}"></td>
-                <td th:text="${criminal.lastKnownAddress}"></td>
-                <td th:text="${criminal.languages}"></td>
-                <td th:text="${criminal.criminalProfession}"></td>
-                <td th:text="${criminal.lastCrimeDetails}"></td>
-
-                <td>
-                    <button class="btn btn-info"
-                            th:onclick="|window.location.href='/criminal/criminalDetails/${criminal.id}'|">
-                        <i class="fas fa-info-circle icon-style"></i>
-                    </button>
-
-                    <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary"
-                            th:onclick="|window.location.href='/criminal/criminalUpdate/${criminal.id}'|">
-                        <i class="fas fa-edit icon-style"></i>
-                    </button>
-
-                    <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger"
-                            th:if="${criminal.dead}"
-                            data-toggle="modal"
-                            data-target="#deleteConfirmationModal"
-                            th:data-delete-link="@{'/criminal/criminalDelete/' + ${criminal.id}}">
-                        <i class="fas fa-ban icon-style"></i>
-                    </button>
-                </td>
-
-
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="container" th:include="criminal/list_form :: listForm"></div>
+    <div class="container" th:include="criminal/delete_confirmation_form :: deleteConfirmationForm"></div>
 
     <div class="mt-4">
         <button class="btn btn-primary" th:onclick="|window.location.href='/criminal/listOfCriminals'|">Back</button>
-    </div>
-</div>
-
-<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteConfirmationModalLabel">Confirm Deletion</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this criminal?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <a id="deleteUserLink" class="btn btn-danger">Delete</a>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -144,12 +55,12 @@
 <script>
     $(document).ready(function () {
         $("#searchInput").on("keyup", function () {
-            var searchValue = $(this).val().toLowerCase();
-            var showDead = $("#deadCheckbox").prop("checked");
+            let searchValue = $(this).val().toLowerCase();
+            let showDead = $("#deadCheckbox").prop("checked");
 
             $("#tableBody tr").each(function () {
-                var isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
-                var rowText = $(this).text().toLowerCase();
+                let isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
+                let rowText = $(this).text().toLowerCase();
 
                 if ((!showDead || isDeadRow) && rowText.includes(searchValue)) {
                     $(this).show();
@@ -158,24 +69,6 @@
                 }
             });
         });
-
-        $("#deadCheckbox").on("change", function () {
-            var showDead = $(this).prop("checked");
-            var searchValue = $("#searchInput").val().toLowerCase();
-
-            $("#tableBody tr").each(function () {
-                var isDeadRow = $(this).find("td").eq(14).find("i.fa-ban").length > 0;
-                var rowText = $(this).text().toLowerCase();
-
-                if ((!showDead || isDeadRow) && rowText.includes(searchValue)) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-
-        $('#deadCheckbox').trigger("change");
 
         $('#deleteConfirmationModal').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget);

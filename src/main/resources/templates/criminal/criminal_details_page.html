@@ -30,35 +30,103 @@
 <div class="container">
     <h2 class="mb-4">Criminal Details</h2>
 
-    <div class="row">
-        <div class="col-md-6">
-            <p><strong>ID:</strong> <span th:text="${criminal.id}"></span></p>
-            <p><strong>First Name:</strong> <span th:text="${criminal.firstName}"></span></p>
-            <p><strong>Last Name:</strong> <span th:text="${criminal.lastName}"></span></p>
-            <p><strong>Nickname:</strong> <span th:text="${criminal.nickname}"></span></p>
-            <p><strong>Height:</strong> <span th:text="${criminal.height}"></span></p>
-            <p><strong>Hair color:</strong> <span th:text="${criminal.hairColor}"></span></p>
-            <p><strong>Eye color:</strong> <span th:text="${criminal.eyeColor}"></span></p>
-            <p><strong>Distinguishing features:</strong> <span th:text="${criminal.distinguishingFeatures}"></span></p>
-            <p><strong>Nationality:</strong> <span th:text="${criminal.nationality}"></span></p>
-            <p><strong>Birth Date:</strong> <span th:text="${criminal.birthDate}"></span></p>
-            <p><strong>Last Known Address:</strong> <span th:text="${criminal.lastKnownAddress}"></span></p>
-            <p><strong>Languages:</strong> <span th:text="${criminal.languages}"></span></p>
-            <p><strong>Criminal Profession:</strong> <span th:text="${criminal.criminalProfession}"></span></p>
-            <p><strong>Last Crime Details:</strong> <span th:text="${criminal.lastCrimeDetails}"></span></p>
-            <p><strong>Is Archived:</strong> <span th:text="${criminal.isArchived()}"></span></p>
-            <p><strong>Is Dead:</strong> <span th:text="${criminal.isArchived()}"></span></p>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>ID:</th>
+            <td th:text="${criminal.id}"></td>
+        </tr>
+        <tr>
+            <th>First Name:</th>
+            <td th:text="${criminal.firstName}"></td>
+        </tr>
+        <tr>
+            <th>Hair Color:</th>
+            <td th:text="${criminal.hairColor}"></td>
+        </tr>
+        <tr>
+            <th>Distinguishing Features:</th>
+            <td th:text="${criminal.distinguishingFeatures}"></td>
+        </tr>
+        <tr>
+            <th>Nationality:</th>
+            <td th:text="${criminal.nationality}"></td>
+        </tr>
+        <tr>
+            <th>Birth Date:</th>
+            <td th:text="${criminal.birthDate}"></td>
+        </tr>
+        <tr>
+            <th>Last Known Address:</th>
+            <td th:text="${criminal.lastKnownAddress}"></td>
+        </tr>
+        <tr>
+            <th>Languages:</th>
+            <td th:text="${criminal.languages}"></td>
+        </tr>
+        <tr>
+            <th>Criminal Profession:</th>
+            <td th:text="${criminal.criminalProfession}"></td>
+        </tr>
+        <tr>
+            <th>Last Crime Details:</th>
+            <td th:text="${criminal.lastCrimeDetails}"></td>
+        </tr>
+        <tr>
+            <th>Is Archived:</th>
+            <td th:text="${criminal.isArchived}"></td>
+        </tr>
+        <tr>
+            <th>Is Dead:</th>
+            <td th:text="${criminal.isDead}"></td>
+        </tr>
 
-            <th:block th:if="${criminal.criminalGroup != null}">
-                <p><strong>Criminal group id:</strong> <span th:text="${criminal.criminalGroup.id}"></span></p>
-                <p><strong>Criminal group:</strong> <span th:text="${criminal.criminalGroup.groupName}"></span></p>
-                <p><strong>Criminal group leader name:</strong> <span th:text="${criminal.criminalGroup.leaderName}"></span></p>
-                <p><strong>Criminal group activities:</strong> <span th:text="${criminal.criminalGroup.activities}"></span></p>
-            </th:block>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
+
+        <th:block th:if="${criminal.criminalGroup != null}">
+            <tr>
+                <th>Criminal Group ID:</th>
+                <td th:text="${criminal.criminalGroup.id}"></td>
+            </tr>
+            <tr>
+                <th>Criminal Group:</th>
+                <td th:text="${criminal.criminalGroup.groupName}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <h1>Partners</h1>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>NickName</th>
+            <th>Height</th>
+            <th>Distinguishing features</th>
+            <th>Nationality</th>
+            <th>Profession</th>
+            <th>Crime Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="member : ${member}">
+            <tr>
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.firstName}"></td>
+                <td th:text="${member.lastName}"></td>
+                <td th:text="${member.nickname}"></td>
+                <td th:text="${member.height}"></td>
+                <td th:text="${member.distinguishingFeatures}"></td>
+                <td th:text="${member.nationality}"></td>
+                <td th:text="${member.criminalProfession}"></td>
+                <td th:text="${member.lastCrimeDetails}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
 
     <div class="mt-4">
         <button class="btn btn-primary" onclick="goBack()">Back</button>

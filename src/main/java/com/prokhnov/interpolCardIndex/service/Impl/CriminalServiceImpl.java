@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,6 +93,21 @@ public class CriminalServiceImpl implements CriminalService {
     public List<CriminalDto> findCriminalByCriminalGroupIsNull() {
 
         List<Criminal> criminals =criminalRepository.findCriminalByCriminalGroupIsNull();
+        return criminals.stream()
+                .map(criminalMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CriminalDto> searchCriminals(String firstName, String lastName, String nickname, String nationality,
+                                          String hairColor, String eyeColor, String distinguishingFeatures,
+                                          LocalDate birthDate, String lastKnownAddress, String languages,
+                                          String criminalProfession, String lastCrimeDetails, Boolean isArchived,
+                                          Boolean isDead) {
+        List<Criminal> criminals = criminalRepository.findByAttributes(firstName, lastName, nickname, nationality,
+                hairColor, eyeColor, distinguishingFeatures, birthDate, lastKnownAddress,
+                languages, criminalProfession, lastCrimeDetails, isArchived, isDead);
+
         return criminals.stream()
                 .map(criminalMapper::toDTO)
                 .collect(Collectors.toList());

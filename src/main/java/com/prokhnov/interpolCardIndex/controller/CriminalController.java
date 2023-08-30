@@ -1,6 +1,7 @@
 package com.prokhnov.interpolCardIndex.controller;
 
 import com.prokhnov.interpolCardIndex.dto.CriminalDto;
+import com.prokhnov.interpolCardIndex.dto.CriminalGroupDto;
 import com.prokhnov.interpolCardIndex.service.CriminalService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,6 +40,47 @@ public class CriminalController {
         return "criminal/criminal_list_page";
     }
 
+    @GetMapping("/search")
+    public String searchCriminals(@RequestParam(required = false) String firstName,
+                                  @RequestParam(required = false) String lastName,
+                                  @RequestParam(required = false) String nickname,
+                                  @RequestParam(required = false) String nationality,
+                                  @RequestParam(required = false) String hairColor,
+                                  @RequestParam(required = false) String eyeColor,
+                                  @RequestParam(required = false) String distinguishingFeatures,
+                                  @RequestParam(required = false) String birthDate,
+                                  @RequestParam(required = false) String lastKnownAddress,
+                                  @RequestParam(required = false) String languages,
+                                  @RequestParam(required = false) String criminalProfession,
+                                  @RequestParam(required = false) String lastCrimeDetails,
+                                  @RequestParam(required = false) Boolean isDead,
+                                  Model model) {
+        LocalDate parsedBirthDate = null;
+        if (birthDate != null && !birthDate.isEmpty()) {
+            parsedBirthDate = LocalDate.parse(birthDate);
+        }
+
+        boolean equals = Objects.equals(model.getAttribute("fromPage"), "archive");
+
+        if (!equals) {
+            List<CriminalDto> filteredCriminals = criminalService.searchCriminals(
+                    firstName, lastName, nickname, nationality, hairColor, eyeColor,
+                    distinguishingFeatures, parsedBirthDate, lastKnownAddress, languages,
+                    criminalProfession, lastCrimeDetails, false, isDead);
+
+            model.addAttribute("criminalList", filteredCriminals);
+            return "criminal/criminal_list_page";
+        } else {
+            List<CriminalDto> filteredCriminals = criminalService.searchCriminals(
+                    firstName, lastName, nickname, nationality, hairColor, eyeColor,
+                    distinguishingFeatures, parsedBirthDate, lastKnownAddress, languages,
+                    criminalProfession, lastCrimeDetails, true, isDead);
+
+            model.addAttribute("criminalList", filteredCriminals);
+            return "criminal/criminal_archived_list_page";
+        }
+    }
+
     @GetMapping("/listOfArchivedCriminals")
     public String criminalArchivedListPage(Model model) {
         List<CriminalDto> allByIsArchivedIsTrue = criminalService.findAllByIsArchivedIsTrue();
@@ -49,6 +92,9 @@ public class CriminalController {
     @GetMapping("/criminalDetails/{criminalId}")
     public String criminalDetailsPage(@PathVariable Long criminalId, Model model) {
         CriminalDto criminalDto = criminalService.getCriminalById(criminalId);
+        CriminalGroupDto criminalGroup = criminalDto.getCriminalGroup();
+        List<CriminalDto> criminalByCriminalGroupId = criminalService.findCriminalByCriminalGroupId(criminalGroup.getId());
+        model.addAttribute("member", criminalByCriminalGroupId);
         model.addAttribute("criminal", criminalDto);
         return "criminal/criminal_details_page";
     }
