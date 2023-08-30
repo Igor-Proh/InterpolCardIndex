@@ -38,6 +38,19 @@ public class CriminalGroupController {
         model.addAttribute("criminalGroupList", criminalGroupService.getAllCriminalGroup());
         return "criminal_group/criminal_group_list_page";
     }
+    @GetMapping("/search")
+    public String searchCriminalGroups(
+            @RequestParam(required = false) String groupName,
+            @RequestParam(required = false) String leaderName,
+            @RequestParam(required = false) String activities,
+            @RequestParam(required = false) Boolean isMafia,
+            Model model) {
+
+        List<CriminalGroupDto> searchResults = criminalGroupService.searchCriminalGroups(groupName,leaderName,activities,isMafia);
+
+        model.addAttribute("criminalGroupList", searchResults);
+        return "criminal_group/criminal_group_list_page";
+    }
 
     @GetMapping("/criminalGroupDetails/{criminalGroupId}")
     public String criminalGroupDetailsPage(@PathVariable Long criminalGroupId, Model model) {

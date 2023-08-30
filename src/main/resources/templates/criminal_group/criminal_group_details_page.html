@@ -57,13 +57,13 @@
     <div class="mt-4">
         <h4>Members:</h4>
 
-
         <div class="mt-4">
-            <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary" th:onclick="|window.location.href='/criminalGroup/criminalGroupAddMembers/'+ ${criminalGroup.id}|">Add new member</button>
+            <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-primary"
+                    th:onclick="|window.location.href='/criminalGroup/criminalGroupAddMembers/'+ ${criminalGroup.id}|">Add new member</button>
 
         </div>
         <br>
-        <table class="table table-bordered">
+        <table class="table table-bordered" th:if="${criminalGroupMembers != null && criminalGroupMembers.size()>0}">
             <thead>
             <tr>
                 <th>ID</th>
@@ -111,10 +111,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 </body>
 </html>

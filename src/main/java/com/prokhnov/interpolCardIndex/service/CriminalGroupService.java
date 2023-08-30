@@ -1,6 +1,8 @@
 package com.prokhnov.interpolCardIndex.service;
 
 import com.prokhnov.interpolCardIndex.dto.CriminalGroupDto;
+import com.prokhnov.interpolCardIndex.model.CriminalGroup;
+
 import java.util.List;
 /**
  * The {@code CriminalGroupService} interface.<br/>
@@ -17,5 +19,10 @@ public interface CriminalGroupService {
     CriminalGroupDto getCriminalGroupById(long id);
 
     void deleteCriminalGroupById(long id);
+
+    List<CriminalGroupDto> searchCriminalGroups(String groupName,
+                                                String leaderName,
+                                                String activities,
+                                                Boolean isMafia);
 
 }

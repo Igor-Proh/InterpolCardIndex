@@ -93,8 +93,10 @@ public class CriminalController {
     public String criminalDetailsPage(@PathVariable Long criminalId, Model model) {
         CriminalDto criminalDto = criminalService.getCriminalById(criminalId);
         CriminalGroupDto criminalGroup = criminalDto.getCriminalGroup();
-        List<CriminalDto> criminalByCriminalGroupId = criminalService.findCriminalByCriminalGroupId(criminalGroup.getId());
-        model.addAttribute("member", criminalByCriminalGroupId);
+        if (criminalGroup != null) {
+            List<CriminalDto> criminalByCriminalGroupId = criminalService.findCriminalByCriminalGroupId(criminalGroup.getId());
+            model.addAttribute("member", criminalByCriminalGroupId);
+        }
         model.addAttribute("criminal", criminalDto);
         return "criminal/criminal_details_page";
     }

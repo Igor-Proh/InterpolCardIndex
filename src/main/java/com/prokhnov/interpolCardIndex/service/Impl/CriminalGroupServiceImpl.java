@@ -62,4 +62,18 @@ public class CriminalGroupServiceImpl implements CriminalGroupService {
     public void deleteCriminalGroupById(long id) {
         criminalGroupRepository.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CriminalGroupDto> searchCriminalGroups(String groupName,
+                                                       String leaderName,
+                                                       String activities,
+                                                       Boolean isMafia) {
+        List<CriminalGroup> criminalGroups = criminalGroupRepository.findByAttributes(groupName, leaderName, activities, isMafia);
+
+        return criminalGroups.stream()
+                .map(criminalGroupMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
 }

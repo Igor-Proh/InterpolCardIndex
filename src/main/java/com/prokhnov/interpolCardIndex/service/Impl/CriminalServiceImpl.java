@@ -99,6 +99,7 @@ public class CriminalServiceImpl implements CriminalService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<CriminalDto> searchCriminals(String firstName, String lastName, String nickname, String nationality,
                                           String hairColor, String eyeColor, String distinguishingFeatures,
                                           LocalDate birthDate, String lastKnownAddress, String languages,

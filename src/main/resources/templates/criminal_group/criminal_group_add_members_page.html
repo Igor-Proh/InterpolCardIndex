@@ -28,9 +28,6 @@
             border-radius: 5px;
         }
 
-        .icon-style {
-            font-size: 18px; /* Set your desired size here */
-        }
     </style>
 </head>
 <body>
@@ -99,7 +96,7 @@
 <script>
     $(document).ready(function () {
         $("#searchInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
+            let value = $(this).val().toLowerCase();
             $("#tableBody tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
             });

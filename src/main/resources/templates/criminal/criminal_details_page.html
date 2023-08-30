@@ -95,9 +95,9 @@
         </tbody>
     </table>
 
-    <h1>Partners</h1>
+    <h1 th:if="${member != null}">Partners</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" th:if="${member != null}">
         <thead>
         <tr>
             <th>ID</th>
@@ -112,7 +112,7 @@
         </tr>
         </thead>
         <tbody>
-        <th:block th:each="member : ${member}">
+        <th:block th:each="member : ${member}" >
             <tr>
                 <td th:text="${member.id}"></td>
                 <td th:text="${member.firstName}"></td>
