@@ -60,24 +60,22 @@ ADMIN - full rights. Can delete, add, modify data in tables presented in the pro
 # Project overview
 
 Home Page 
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/9f5b3be7-66dd-480e-8fd3-3e4df13d47f1)
+![home page](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/0632024b-1435-43e8-9ade-fb0e206f48f6)
 
 On this page, we can log in or create a new user, which is mandatory because an unauthenticated user will not be allowed to enter the lists of criminals and criminal groups.
 
 If you want to register. You can do it on Sign Up page. This page use google reCaptcha and look like:
 
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/9d44b7b2-98f4-4e4f-89d0-39807a35447f)
-
+![registration page](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/6e152fdb-0410-47b4-ba23-305b777bb49b)
 
 What we see if log in like User:
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/9bfb3d34-0f0c-492e-80a6-c7b82339132b)
+![user home page](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/f8156464-33a6-4cd5-8306-247a47f405dd)
 
 What we see if log in like Admin:
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/277d1a37-7e20-40cf-802c-a55b72f4dfc5)
+![admin home page](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/73e2c5a0-ab76-4573-b415-7df6590fb03d)
 
 List of Criminals Page look like (for Admin):
-
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/af4266b1-78fe-42aa-8310-21400c4fae89)
+![admin list criminals](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/711a6826-f9e5-4c05-8f50-c8b6979bc64a)
 
 For admins, we can create new criminal, update criminals and delete if Criminal dead. 
 
@@ -87,7 +85,7 @@ Also in lists page we have search field that filter data including all fields.
 
 List of Criminal Groups look like (for Admin):
 
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/80e48bcb-29d2-4da8-8efd-2c846ffdab0f)
+![admin criminal group list](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/f10a3f08-3aa1-462f-9659-2de6ca17d27a)
 
 For admins, we can create new criminal group, update criminal group and delete. 
 
@@ -96,14 +94,16 @@ For users, we can only see information about Criminal group.
 Also in lists page we have search field that filter data including all fields.
 
 In page Criminal Group Details that look like(for Admin):
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/2e4cf88a-4588-4d8f-a1fb-c1212712c394)
+![criminal group info](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/2b0542a0-5f6c-412f-887c-7e40a9043380)
+
 
 For admins, we can add new members to group or delete from current. 
 
 For users, we can only see information about Criminal group.
 
 Page List of Users look like (for Admin):
-![image](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/144a6c96-3fab-49f6-b431-1acd3ff27409)
+![userlist](https://github.com/Igor-Proh/InterpolCardIndex/assets/71402291/542e5bc1-55d6-4cea-8720-cca6c35d017e)
+
 
 There we can add new user, update or delete current. Admin cant delete himself. This list open only for Admin.
 
