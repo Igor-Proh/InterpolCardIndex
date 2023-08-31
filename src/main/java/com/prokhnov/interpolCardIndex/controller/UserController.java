@@ -46,7 +46,6 @@ public class UserController {
         userService.deleteUserById(userId);
         List<User> allUsers = userService.findAllUsers();
         model.addAttribute("userList", allUsers);
-
         return "redirect:/user/listOfUsers";
     }
 
@@ -70,7 +69,6 @@ public class UserController {
         }
         return "redirect:/user/listOfUsers";
     }
-
 
     @GetMapping("/userUpdate/{id}")
     public String updateUser(@PathVariable Long id, Model model) {

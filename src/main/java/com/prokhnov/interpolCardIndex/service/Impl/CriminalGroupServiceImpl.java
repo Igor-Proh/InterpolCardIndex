@@ -41,7 +41,6 @@ public class CriminalGroupServiceImpl implements CriminalGroupService {
         return criminals.stream()
                 .map(criminalGroupMapper::toDTO)
                 .collect(Collectors.toList());
-
     }
 
     @Override
@@ -75,5 +74,4 @@ public class CriminalGroupServiceImpl implements CriminalGroupService {
                 .map(criminalGroupMapper::toDTO)
                 .collect(Collectors.toList());
     }
-
 }

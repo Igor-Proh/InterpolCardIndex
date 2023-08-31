@@ -9,7 +9,6 @@ import org.springframework.security.core.AuthenticationException;
  * @version 1.0 Aug 2023
  */
 public class UserWithCurrentEmailAlreadyExistException extends AuthenticationException {
-
     public UserWithCurrentEmailAlreadyExistException(final String msg) {
         super(msg);
     }

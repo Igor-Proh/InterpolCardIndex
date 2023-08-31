@@ -19,7 +19,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EntityScan("com.prokhnov.interpolCardIndex.model")
 @EnableJpaRepositories("com.prokhnov.interpolCardIndex.repository")
 public class InterpolCardIndexApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(InterpolCardIndexApplication.class, args);
         BasicConfigurator.configure();

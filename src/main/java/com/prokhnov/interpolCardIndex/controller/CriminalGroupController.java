@@ -136,6 +136,4 @@ public class CriminalGroupController {
 
         return "redirect:/criminalGroup/listOfAllCriminalGroups";
     }
-
-
 }
